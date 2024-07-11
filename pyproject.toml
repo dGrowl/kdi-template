@@ -1,0 +1,6 @@
+[project]
+name = "kdi-template"
+version = "0.0.1"
+
+[tool.distutils.egg_info]
+egg_base = "build"
