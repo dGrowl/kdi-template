@@ -4,3 +4,7 @@ version = "0.0.1"
 
 [tool.distutils.egg_info]
 egg_base = "build"
+
+[tool.ruff.format]
+indent-style = "tab"
+line-ending = "lf"
