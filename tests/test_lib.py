@@ -2,6 +2,7 @@ import pytest
 
 from kdi_template import fibonacci
 
+
 class TestFibonacci:
 	@pytest.mark.parametrize("x,y", [(0, 0), (1, 1)])
 	def test_base_cases(self, x: int, y: int):
