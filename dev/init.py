@@ -28,7 +28,7 @@ def run_wrapper(cmd: list[Path | str]):
 
 
 def rename_pyproject(new_name: str):
-	print("Renaming project in pyproject.toml...")
+	print('Renaming project in "pyproject.toml"...')
 	with open(PYPROJECT_PATH, "r") as f:
 		lines = f.readlines()
 	lines[1] = f'name = "{new_name}"\n'
@@ -42,12 +42,12 @@ def rename_project_dir(new_name: str):
 
 
 def make_build_dir():
-	print("Creating /build dir...")
+	print('Creating "/build" dir...')
 	makedirs(ROOT_PATH / "build", exist_ok=True)
 
 
 def create_venv():
-	print("Creating virtual environment in /venv...")
+	print('Creating virtual environment in "/venv"...')
 	run_wrapper([executable, "-m", "venv", ROOT_PATH / "venv"])
 
 
@@ -57,7 +57,7 @@ def setup_git_hooks():
 
 
 def install_self():
-	print("Install self as an editable package...")
+	print("Installing self as an editable package...")
 	run_wrapper([PIP_PATH, "install", "-e", ROOT_PATH])
 
 
