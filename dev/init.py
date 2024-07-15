@@ -51,6 +51,11 @@ def create_venv():
 	run_wrapper([executable, "-m", "venv", ROOT_PATH / "venv"])
 
 
+def setup_git_hooks():
+	print("Setting up git hooks...")
+	run_wrapper(["git", "config", "--local", "core.hooksPath", "dev/hooks/"])
+
+
 def install_self():
 	print("Install self as an editable package...")
 	run_wrapper([PIP_PATH, "install", "-e", ROOT_PATH])
@@ -66,6 +71,7 @@ if __name__ == "__main__":
 	rename_pyproject(args.name)
 	rename_project_dir(args.name)
 	create_venv()
+	setup_git_hooks()
 	make_build_dir()
 	install_self()
 	install_dev_dependencies()

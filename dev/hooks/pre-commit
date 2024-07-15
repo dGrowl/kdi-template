@@ -1,0 +1,18 @@
+#!/bin/sh
+
+staged_python_files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.py$')
+if [ -n "$staged_python_files" ]; then
+    echo "Formatting staged files..."
+    ruff format $staged_python_files
+    git add $staged_python_files
+fi
+
+echo "Linting staged files..."
+ruff check $staged_python_files
+
+if [ $? -ne 0 ]; then
+    echo "** ERROR: Linting failed. Commit aborted. **"
+    exit 1
+fi
+
+exit 0
