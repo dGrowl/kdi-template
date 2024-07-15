@@ -11,7 +11,7 @@ DEFAULT_MODULE_NAME = "kdi_template"
 PIP_PATH = ROOT_PATH / "venv" / "Scripts" / "pip"
 PYPROJECT_PATH = ROOT_PATH / "pyproject.toml"
 
-verbose = True
+verbose = False
 
 parser = ArgumentParser(
 	prog="python init_dev.py",
