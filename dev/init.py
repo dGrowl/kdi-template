@@ -11,17 +11,28 @@ DEFAULT_MODULE_NAME = "kdi_template"
 PIP_PATH = ROOT_PATH / "venv" / "Scripts" / "pip"
 PYPROJECT_PATH = ROOT_PATH / "pyproject.toml"
 
+verbose = True
+
 parser = ArgumentParser(
 	prog="python init_dev.py",
 	description="Sets up the development environment for a new KDI module.",
 )
 parser.add_argument("name", help="specifies a name for the module")
+parser.add_argument(
+	"-v",
+	"--verbose",
+	action="store_true",
+	default=verbose,
+	help="prints the output of each command",
+)
 
 
 def run_wrapper(cmd: list[Path | str]):
 	result = run(cmd, capture_output=True)
-	if result.stdout:
-		print(result.stdout.decode())
+	if verbose:
+		print(" ".join(map(str, cmd)))
+		if result.stdout:
+			print(result.stdout.decode())
 	if result.stderr:
 		print("** ERROR: **")
 		print(result.stderr.decode())
@@ -68,6 +79,8 @@ def install_dev_dependencies():
 
 if __name__ == "__main__":
 	args = parser.parse_args()
+	verbose = args.verbose
+
 	rename_pyproject(args.name)
 	rename_project_dir(args.name)
 	create_venv()
